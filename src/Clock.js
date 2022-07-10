@@ -23,7 +23,7 @@ const reducer = (state, { type }) => {
         state.breakLength = 5;
       }
 
-      if (state.breakLength < 1) {
+      if (state.breakLength < 2) {
         return state
       };
       return ({
@@ -31,27 +31,31 @@ const reducer = (state, { type }) => {
         breakLength: state.breakLength - 1
       });
     case ACTIONS.INCSESSION:
-      if (state.sessionLength == null) {
+      if (state.sessionLength == null || state.timerTime == null) {
         state.sessionLength = 25;
+        state.timerTime = 25
       }
       if (state.sessionLength > 59) {
         return state;
       }
       return ({
         ...state,
-        sessionLength: state.sessionLength + 1
+        sessionLength: state.sessionLength + 1,
+        timerTime: state.timerTime + 1
       });
 
     case ACTIONS.DECSESSION:
-      if (state.sessionLength == null) {
+      if (state.sessionLength == null || state.timerTime == null) {
         state.sessionLength = 25;
+        state.timerTime = 25
       }
-      if (state.sessionLength < 1) {
+      if (state.sessionLength < 2) {
         return state;
       }
       return ({
         ...state,
-        sessionLength: state.sessionLength - 1
+        sessionLength: state.sessionLength - 1,
+        timerTime: state.timerTime - 1
       });
     default:
       return state;
@@ -61,7 +65,7 @@ const reducer = (state, { type }) => {
 
 function Clock() {
 
-  const [{ breakLength=5, sessionLength=25 }, dispatch] = useReducer(reducer, {})
+  const [{ breakLength = 5, sessionLength = 25, timerTime = 25, seconds = '00' }, dispatch] = useReducer(reducer, {})
 
   return (
     <>
@@ -69,9 +73,9 @@ function Clock() {
         <BreakElement title={"Break Length"} time={breakLength} dispatch={dispatch} />
         <SessionElement title={"Session Length"} time={sessionLength} dispatch={dispatch} />
       </div>
-      
+
       <div id="timer-box">
-        <Timer title={"Timer"} time={sessionLength}/>
+        <Timer title={"Timer"} minutes={timerTime} seconds={seconds} />
       </div>
     </>
   );
