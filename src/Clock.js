@@ -57,6 +57,20 @@ const reducer = (state, { type }) => {
         sessionLength: state.sessionLength - 1,
         timerTime: state.timerTime - 1
       });
+
+    case ACTIONS.RESET:
+      return({
+        ...state,
+        breakLength: 5,
+        sessionLength: 25, 
+        timerTime: 25,
+        seconds: '00',
+        play: false
+      })
+   
+
+
+
     default:
       return state;
   }
@@ -65,7 +79,7 @@ const reducer = (state, { type }) => {
 
 function Clock() {
 
-  const [{ breakLength = 5, sessionLength = 25, timerTime = 25, seconds = '00' }, dispatch] = useReducer(reducer, {})
+  const [{ breakLength = 5, sessionLength = 25, timerTime = 25, seconds = '00', play=false, reset=false }, dispatch] = useReducer(reducer, {})
 
   return (
     <>
@@ -75,7 +89,7 @@ function Clock() {
       </div>
 
       <div id="timer-box">
-        <Timer title={"Timer"} minutes={timerTime} seconds={seconds} />
+        <Timer title={"Timer"} minutes={timerTime} seconds={seconds} dispatch={dispatch} />
       </div>
     </>
   );

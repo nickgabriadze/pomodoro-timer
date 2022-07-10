@@ -14,12 +14,12 @@ export function BreakElement({ title, time, dispatch }) {
                 <p id="break-label">{title}</p>
                 <h3 id="brk-actual-time">{time}</h3>
                 <div className="break-inc-dec">
-                    <element id="break-decrement" onClick={() => dispatch({ type: ACTIONS.DECBREAK })}>
+                    <section id="break-decrement" onClick={() => dispatch({ type: ACTIONS.DECBREAK })}>
                         <FontAwesomeIcon icon={faSquareMinus} size='2x'></FontAwesomeIcon>
-                    </element>
-                    <element id="break-increment" onClick={() => dispatch({ type: ACTIONS.INCBREAK })}>
+                    </section>
+                    <section id="break-increment" onClick={() => dispatch({ type: ACTIONS.INCBREAK })}>
                         <FontAwesomeIcon icon={faSquarePlus} size='2x'></FontAwesomeIcon>
-                    </element>
+                    </section>
                 </div>
 
             </div>
@@ -38,12 +38,12 @@ export function SessionElement({ title, time, dispatch }) {
                 <p id="session-label">{title}</p>
                 <h3 id="session-actual-time">{time}</h3>
                 <div className="session-inc-dec">
-                    <element id="session-decrement" onClick={() => dispatch({ type: ACTIONS.DECSESSION })}>
+                    <section id="session-decrement" onClick={() => dispatch({ type: ACTIONS.DECSESSION })}>
                         <FontAwesomeIcon icon={faSquareMinus} size='2x'></FontAwesomeIcon>
-                    </element>
-                    <element id="session-increment" onClick={() => dispatch({ type: ACTIONS.INCSESSION })}>
+                    </section>
+                    <section id="session-increment" onClick={() => dispatch({ type: ACTIONS.INCSESSION })}>
                         <FontAwesomeIcon icon={faSquarePlus} size='2x'></FontAwesomeIcon>
-                    </element>
+                    </section>
                 </div>
 
             </div>
@@ -61,9 +61,9 @@ export function Timer({ title, minutes, seconds, dispatch }) {
                     <h3 id="time-left">{minutes}:{seconds}</h3>
                 </div>
                 <div id="controls">
-                    <FontAwesomeIcon id="start_stop" icon={faPlay} size='2x' />
-                    <FontAwesomeIcon id="pause" icon={faPause} size='2x' />
-                    <FontAwesomeIcon id="reset" icon={faRepeat} size='2x' />
+                    <FontAwesomeIcon id="start_stop" icon={faPlay} size='2x' onClick={() => dispatch({type:ACTIONS.PLAY})}/>
+                    <FontAwesomeIcon id="pause" icon={faPause} size='2x' onClick={() => dispatch({type:ACTIONS.PAUSE})} />
+                    <FontAwesomeIcon id="reset" icon={faRepeat} size='2x' onClick={() => dispatch({type:ACTIONS.RESET})}/>
                 </div>
             </div>
         </>
