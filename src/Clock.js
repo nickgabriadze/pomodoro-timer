@@ -1,6 +1,6 @@
 import './Clock.css';
 import React, { useReducer } from 'react';
-import { BreakElement, SessionElement } from "./components";
+import { BreakElement, SessionElement, Timer } from "./components";
 import { ACTIONS } from './management';
 
 const reducer = (state, { type }) => {
@@ -68,6 +68,10 @@ function Clock() {
       <div id="up-downs">
         <BreakElement title={"Break Length"} time={breakLength} dispatch={dispatch} />
         <SessionElement title={"Session Length"} time={sessionLength} dispatch={dispatch} />
+      </div>
+      
+      <div id="timer-box">
+        <Timer title={"Timer"} time={sessionLength}/>
       </div>
     </>
   );

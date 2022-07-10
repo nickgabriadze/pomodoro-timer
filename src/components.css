@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+*{
 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+    margin: 0;
+}
 #break-label, #session-label{
     color: #000000;
     font-family:'Roboto','Times New Roman', Times, serif,sans-serif;
@@ -14,6 +24,7 @@
     padding: 5px;
     border-radius: 5px;
     background-color: #C70039;
+    
 }
 
 #brk-actual-time, #session-actual-time{
@@ -22,6 +33,7 @@
     color:#000000;
     padding-top: 10px;
     font-family: 'Roboto' ,'Courier New', Courier, monospace, sans-serif;
+    
 }
 
 .break-inc-dec,.session-inc-dec{
@@ -29,12 +41,44 @@
     flex-direction: row;
     justify-content: space-between;
     padding: 8px;
-  
     background-color: #C70039;
     border-radius: 5px;
    
+   
 }
 
-#break-increment:hover, #break-decrement:hover, #session-increment:hover, #session-decrement:hover{
-    cursor: pointer;
+#break-increment:hover, #break-decrement:hover, #session-increment:hover, #session-decrement:hover,
+#start_stop, #pause, #reset{
+    cursor:pointer;
+}
+
+#actual-timer{
+    width: 400px;
+    height: 250px;
+    background-color: #C70039;
+    border-radius: 15px;
+}
+#timer-label{
+   display: block;
+    
+    
+}
+#timer{
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Roboto','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#time-left{
+    margin-top: 25px;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Roboto','Courier New', Courier, monospace;
+}
+
+#controls{
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    padding: 25px;
 }
