@@ -53,6 +53,8 @@ const reducer = (state, { type }) => {
         ...state,
         sessionLength: state.sessionLength - 1
       });
+    default:
+      return state;
   }
 }
 

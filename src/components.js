@@ -14,12 +14,12 @@ export function BreakElement({title, time, dispatch}) {
                 <p id="break-label">{title}</p>
                 <h3 id="brk-actual-time">{time}</h3>
                 <div className="break-inc-dec">
-                    <a id="break-decrement" onClick={() => dispatch({type:ACTIONS.DECBREAK})}>
+                    <element id="break-decrement" onClick={() => dispatch({type:ACTIONS.DECBREAK})}>
                         <FontAwesomeIcon icon={faSquareMinus} size='2x'></FontAwesomeIcon>
-                    </a>
-                    <a id="break-increment" onClick={() => dispatch({type:ACTIONS.INCBREAK})}>
+                    </element>
+                    <element id="break-increment" onClick={() => dispatch({type:ACTIONS.INCBREAK})}>
                         <FontAwesomeIcon icon={faSquarePlus} size='2x'></FontAwesomeIcon>
-                    </a>
+                    </element>
                 </div>
 
             </div>
@@ -38,12 +38,12 @@ export function SessionElement({title, time, dispatch}){
         <p id="session-label">{title}</p>
         <h3 id="session-actual-time">{time}</h3>
                 <div className="session-inc-dec">
-                    <a id="session-decrement" onClick={() => dispatch({type:ACTIONS.DECSESSION})}>
+                    <element id="session-decrement" onClick={() => dispatch({type:ACTIONS.DECSESSION})}>
                         <FontAwesomeIcon icon={faSquareMinus} size='2x'></FontAwesomeIcon>
-                    </a>
-                    <a id="session-increment" onClick={() => dispatch({type:ACTIONS.INCSESSION})}>
+                    </element>
+                    <element id="session-increment" onClick={() => dispatch({type:ACTIONS.INCSESSION})}>
                         <FontAwesomeIcon icon={faSquarePlus} size='2x'></FontAwesomeIcon>
-                    </a>
+                    </element>
                 </div>
 
         </div>
@@ -51,3 +51,4 @@ export function SessionElement({title, time, dispatch}){
         </>
     );
 }
+

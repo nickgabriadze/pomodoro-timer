@@ -35,6 +35,6 @@
    
 }
 
-#break-increment, #break-decrement, #session-increment, #session-decrement{
+#break-increment:hover, #break-decrement:hover, #session-increment:hover, #session-decrement:hover{
     cursor: pointer;
 }
