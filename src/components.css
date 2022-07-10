@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,500;1,400&display=swap');
+
+#break-label, #session-label{
+    color: #000000;
+    font-family:'Roboto','Times New Roman', Times, serif,sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#break-time, #session-time{
+    width: 200px;
+    height: fit-content;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #C70039;
+}
+
+#brk-actual-time, #session-actual-time{
+    text-align: center;
+    font-size: 2rem;
+    color:#000000;
+    padding-top: 10px;
+    font-family: 'Roboto' ,'Courier New', Courier, monospace, sans-serif;
+}
+
+.break-inc-dec,.session-inc-dec{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 8px;
+  
+    background-color: #C70039;
+    border-radius: 5px;
+   
+}
+
+#break-increment, #break-decrement, #session-increment, #session-decrement{
+    cursor: pointer;
+}
