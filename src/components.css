@@ -66,12 +66,14 @@
 #timer{
     text-align: center;
     font-size: 3rem;
+    padding-top: 5px;
     font-family: 'Roboto','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 #time-left{
-    margin-top: 25px;
+    margin-top: 28px;
     text-align: center;
+    padding-bottom: 5px;
     font-size: 3rem;
     font-family: 'Roboto','Courier New', Courier, monospace;
 }
