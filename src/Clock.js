@@ -6,7 +6,7 @@ import { ACTIONS } from './management';
 const reducer = (state, { type }) => {
   switch (type) {
     case ACTIONS.INCBREAK:
-      if(state.play) return state;
+      if (state.play) return state;
       if (state.breakLength == null) {
         state.breakLength = 5;
       }
@@ -19,7 +19,7 @@ const reducer = (state, { type }) => {
         breakLength: state.breakLength + 1
       });
     case ACTIONS.DECBREAK:
-      if(state.play) return state;
+      if (state.play) return state;
       if (state.breakLength == null) {
         state.breakLength = 5;
       }
@@ -32,10 +32,10 @@ const reducer = (state, { type }) => {
         breakLength: state.breakLength - 1
       });
     case ACTIONS.INCSESSION:
-      if(state.play) return state;
+      if (state.play) return state;
       if (state.sessionLength == null) {
         state.sessionLength = 25;
-        
+
       }
       if (state.sessionLength > 59) {
         return state;
@@ -43,15 +43,15 @@ const reducer = (state, { type }) => {
       return ({
         ...state,
         sessionLength: state.sessionLength + 1,
-      
+
       });
 
     case ACTIONS.DECSESSION:
-      if(state.play) return state;
+      if (state.play) return state;
 
       if (state.sessionLength == null) {
         state.sessionLength = 25;
-        
+
       }
       if (state.sessionLength < 2) {
         return state;
@@ -73,8 +73,8 @@ const reducer = (state, { type }) => {
       })
 
     case ACTIONS.PLAY:
-      if(state.play){
-        return({
+      if (state.play) {
+        return ({
           ...state,
           play: false,
           reset: false
@@ -92,13 +92,13 @@ const reducer = (state, { type }) => {
     case ACTIONS.PAUSE:
       return ({
         play: false,
-     
+
       })
 
 
 
-      default:
-        return state;
+    default:
+      return state;
   }
 }
 
@@ -114,21 +114,20 @@ function Clock() {
 
   minutes = minutes > 9 ? minutes : `0${minutes}`
   seconds = seconds > 9 ? seconds : `0${seconds}`
-return (
-  <>
-    <div id="up-downs">
-      <BreakElement title={"Break Length"} time={breakLength} dispatch={dispatch} />
-      <SessionElement title={"Session Length"} time={sessionLength} dispatch={dispatch} />
-    </div>
+  return (
+    <>
+      <div id="up-downs">
+        <BreakElement title={"Break Length"} time={breakLength} dispatch={dispatch} />
+        <SessionElement title={"Session Length"} time={sessionLength} dispatch={dispatch} />
+      </div>
 
-    <div id="timer-box">
-      <Timer title={"Timer"}
-        time=
-        {`${minutes}:${seconds}`} 
+      <div id="timer-box">
+        <Timer title={"Timer"}
+          time={`${minutes}:${seconds}`}
           dispatch={dispatch} />
-    </div>
-  </>
-);
+      </div>
+    </>
+  );
 }
 
 export default Clock;
