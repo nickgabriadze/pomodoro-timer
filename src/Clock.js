@@ -1,7 +1,8 @@
 import './Clock.css';
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useInsertionEffect, useReducer, useState } from 'react';
 import { BreakElement, SessionElement, Timer } from "./components";
 import { ACTIONS } from './management';
+import { clear } from '@testing-library/user-event/dist/clear';
 
 const reducer = (state, { type }) => {
   switch (type) {
@@ -73,13 +74,6 @@ const reducer = (state, { type }) => {
       })
 
     case ACTIONS.PLAY:
-      if (state.play) {
-        return ({
-          ...state,
-          play: false,
-          reset: false
-        })
-      }
 
       return ({
         ...state,
@@ -109,11 +103,12 @@ const reducer = (state, { type }) => {
 
 
 function Clock() {
-  let [{ breakLength = 5, sessionLength = 25, play = false, minutes = sessionLength, seconds = 10, reset = false }, dispatch] = useReducer(reducer, {})
+  const [{ breakLength = 5, sessionLength = 25, play = false, minutes=sessionLength, seconds=59,reset = false }, dispatch] = useReducer(reducer, {})
+ 
 
 
-  minutes = minutes > 9 ? minutes : `0${minutes}`
-  seconds = seconds > 9 ? seconds : `0${seconds}`
+
+
   return (
     <>
       <div id="up-downs">
