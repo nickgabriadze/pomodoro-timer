@@ -52,17 +52,17 @@ export function SessionElement({ title, time, dispatch }) {
     );
 }
 
-export function Timer({ title, minutes, seconds, dispatch }) {
+export function Timer({ title,time, dispatch }) {
     return (
         <>
             <div id="actual-timer">
                 <div id="timer-label">
                     <p id="timer">{title}</p>
-                    <h3 id="time-left">{minutes}:{seconds}</h3>
+                    <h3 id="time-left">{time}</h3>
                 </div>
                 <div id="controls">
                     <FontAwesomeIcon id="start_stop" icon={faPlay} size='2x' onClick={() => dispatch({type:ACTIONS.PLAY})}/>
-                    <FontAwesomeIcon id="pause" icon={faPause} size='2x' onClick={() => dispatch({type:ACTIONS.PAUSE})} />
+                    <FontAwesomeIcon id="pause" icon={faPause} size='2x' onClick={() => dispatch({type:ACTIONS.PLAY})} />
                     <FontAwesomeIcon id="reset" icon={faRepeat} size='2x' onClick={() => dispatch({type:ACTIONS.RESET})}/>
                 </div>
             </div>
