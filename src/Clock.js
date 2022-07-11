@@ -109,9 +109,11 @@ const reducer = (state, { type }) => {
 
 
 function Clock() {
-  let [{ breakLength = 5, sessionLength = 25, play = false, minutes = sessionLength, seconds = 0, reset = false }, dispatch] = useReducer(reducer, {})
+  let [{ breakLength = 5, sessionLength = 25, play = false, minutes = sessionLength, seconds = 10, reset = false }, dispatch] = useReducer(reducer, {})
 
 
+  minutes = minutes > 9 ? minutes : `0${minutes}`
+  seconds = seconds > 9 ? seconds : `0${seconds}`
 return (
   <>
     <div id="up-downs">
@@ -121,7 +123,9 @@ return (
 
     <div id="timer-box">
       <Timer title={"Timer"}
-        time={`${minutes}:${seconds}`} dispatch={dispatch} />
+        time=
+        {`${minutes}:${seconds}`} 
+          dispatch={dispatch} />
     </div>
   </>
 );
