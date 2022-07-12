@@ -1,10 +1,14 @@
 import './Clock.css';
-import React, { useEffect, useInsertionEffect, useReducer, useState } from 'react';
-import { BreakElement, SessionElement, Timer } from "./components";
+import './components.css'
+import React, {useReducer, useState } from 'react';
+import { BreakElement, SessionElement} from "./components";
 import { ACTIONS } from './management';
-import { clear } from '@testing-library/user-event/dist/clear';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause, faRepeat } from "@fortawesome/free-solid-svg-icons";
 
 const reducer = (state, { type }) => {
+
+
   switch (type) {
     case ACTIONS.INCBREAK:
       if (state.play) return state;
@@ -102,10 +106,87 @@ const reducer = (state, { type }) => {
 
 
 
-function Clock() {
-  const [{ breakLength = 5, sessionLength = 25, play = false, minutes=sessionLength, seconds=59,reset = false }, dispatch] = useReducer(reducer, {})
- 
 
+function Clock() {
+  const [{ breakLength = 5, sessionLength = 25 }, dispatch] = useReducer(reducer, {});
+  const [minutes, setMinutes] = useState(sessionLength);
+  const [seconds, setSeconds] = useState(0);
+  const [play, setPlay] = useState(false);
+  const [reset, setReset] = useState(false);
+  const [timerClosed, setTimerClosed] = useState(false);
+  const [breakTime, setBreakTime] = useState(true);
+  const [timerText, setTimerText] = useState('Timer')
+  ///Audio file taken from FreeCodeCamp's Codepen Project
+  const audioFile = new Audio("https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav")
+  let sec = 1000
+  audioFile.currentTime = 2
+  audioFile.volume = 0.1
+
+  const sessionInterval = setInterval(() => {
+    clearInterval(sessionInterval)
+    if (minutes != sessionLength & !timerClosed) {
+      setMinutes(sessionLength)
+      
+    }
+    if(play & breakTime){
+      setTimerText('Study Time')
+    }
+    if (reset) {
+      setReset(false)
+      setPlay(false)
+      setTimerClosed(false)
+      setSeconds(0)
+      setMinutes(25)
+      setBreakTime(true)
+      setTimerText('Timer')
+    }
+  })
+
+  const interval = setInterval(() => {
+    clearInterval(interval)
+    if (play) {
+
+      if (seconds > 0) {
+          setSeconds(seconds - 1);
+      }
+      if (seconds === 0) {
+        setMinutes(minutes - 1)
+        setSeconds(59);
+       
+      }
+
+      if (seconds === 0 & minutes === 0 & breakTime) {
+        setTimerText('Break Time')
+        setMinutes(breakLength)
+        setSeconds(0)
+        setBreakTime(false)
+        audioFile.play();
+      }
+
+      if(!breakTime & seconds === 0 & minutes === 0){
+        setTimerText('Study Time')
+        setBreakTime(true)
+        setMinutes(sessionLength)
+        setSeconds(0)
+        audioFile.play();
+      }
+      if(!timerClosed) setTimerClosed(true);
+    }
+    if (reset) {
+      setReset(false)
+      setPlay(false)
+      setTimerClosed(false)
+      setSeconds(0)
+      setMinutes(25)
+      setBreakTime(true)
+      setTimerText('Timer')
+    }
+  }, sec)
+
+
+
+  let formattedMinute = minutes > 9 ? minutes : `0${minutes}`
+  let formattedSecond = seconds > 9 ? seconds : `0${seconds}`
 
 
 
@@ -117,9 +198,17 @@ function Clock() {
       </div>
 
       <div id="timer-box">
-        <Timer title={"Timer"}
-          time={`${minutes}:${seconds}`}
-          dispatch={dispatch} />
+        <div id="actual-timer">
+          <div id="timer-label">
+            <p id="timer">{timerText}</p>
+            <h3 id="time-left">{`${formattedMinute}:${formattedSecond}`}</h3>
+          </div>
+          <div id="controls">
+            <FontAwesomeIcon id="start_stop" icon={faPlay} size='2x' onClick={() => { if (play) { setPlay(false) } else { setPlay(true) } }} />
+            <FontAwesomeIcon id="pause" icon={faPause} size='2x' onClick={() => { if (play) { setPlay(false) } else { setPlay(true) } }} />
+            <FontAwesomeIcon id="reset" icon={faRepeat} size='2x' onClick={() => { setReset(true);dispatch({type: ACTIONS.RESET})}} />
+          </div>
+        </div>
       </div>
     </>
   );

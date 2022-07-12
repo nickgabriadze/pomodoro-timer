@@ -2,7 +2,7 @@
 import React from 'react';
 import "./components.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSquarePlus, faSquareMinus, faPlay, faPause, faRepeat } from "@fortawesome/free-solid-svg-icons";
+import { faSquarePlus, faSquareMinus} from "@fortawesome/free-solid-svg-icons";
 import { ACTIONS } from "./management";
 
 export function BreakElement({ title, time, dispatch }) {
@@ -48,24 +48,6 @@ export function SessionElement({ title, time, dispatch }) {
 
             </div>
 
-        </>
-    );
-}
-
-export function Timer({ title,time, dispatch }) {
-    return (
-        <>
-            <div id="actual-timer">
-                <div id="timer-label">
-                    <p id="timer">{title}</p>
-                    <h3 id="time-left">{time}</h3>
-                </div>
-                <div id="controls">
-                    <FontAwesomeIcon id="start_stop" icon={faPlay} size='2x' onClick={() => dispatch({type:ACTIONS.PLAY})}/>
-                    <FontAwesomeIcon id="pause" icon={faPause} size='2x' onClick={() => dispatch({type:ACTIONS.PLAY})} />
-                    <FontAwesomeIcon id="reset" icon={faRepeat} size='2x' onClick={() => dispatch({type:ACTIONS.RESET})}/>
-                </div>
-            </div>
         </>
     );
 }
